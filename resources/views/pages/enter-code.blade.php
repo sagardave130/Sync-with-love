@@ -12,6 +12,7 @@
                 <p class="text-gray-600">Enter the 6-digit code your partner shared with you.</p>
             </div>
 
+
             <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10" x-data="{
                 code: '',
                 error: '',
