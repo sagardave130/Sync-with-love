@@ -3,38 +3,54 @@
 
 @section('title', 'Spark deeper intimacy & play')
 
-@section('meta_description', 'Play romantic, spicy, fun & deep couple quizzes with your partner. Sync in real-time or send playful quizzes they can answer anytime. No login required — deepen your connection effortlessly on SyncWithLove.com.')
+@section('meta_description',
+    'Play romantic, spicy, fun & deep couple quizzes with your partner. Sync in real-time or
+    send playful quizzes they can answer anytime. No login required — deepen your connection effortlessly on
+    SyncWithLove.com.')
 
-@section('meta_keywords', 'couple quiz, romantic quiz, spicy questions, couple games, long distance couple game, love questions, relationship quiz, truth or dare couples, date night games')
+@section('meta_keywords',
+    'couple quiz, romantic quiz, spicy questions, couple games, long distance couple game, love
+    questions, relationship quiz, truth or dare couples, date night games')
 
 @section('og_title', 'SyncWithLove — Spark deeper intimacy & play')
-@section('og_description', 'Real-time couple games + sendable quizzes. Romantic, spicy, fun & deep categories. Play now or send a quiz link to your partner — no login.')
+@section('og_description',
+    'Real-time couple games + sendable quizzes. Romantic, spicy, fun & deep categories. Play now
+    or send a quiz link to your partner — no login.')
 @section('og_image', asset('images/og-cover.jpg'))
 
 @section('twitter_title', 'SyncWithLove — Romantic & Spicy Couple Games')
-@section('twitter_description', 'Play fun & intimate couple quizzes together or send a quiz link your partner can answer anytime. No login — play instantly.')
+@section('twitter_description',
+    'Play fun & intimate couple quizzes together or send a quiz link your partner can answer
+    anytime. No login — play instantly.')
 @section('twitter_image', asset('images/og-cover.jpg'))
 
 
+@php
+    $schemaData = [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebApplication',
+        'name' => config('app.name', 'SyncWithLove'),
+        'url' => url()->current(),
+        'description' =>
+            trim($__env->yieldContent('meta_description')) ?:
+            'Romantic & spicy couple quizzes. Play in real-time or send your partner fun questions they can answer anytime. No login required.',
+        'applicationCategory' => 'Lifestyle',
+        'operatingSystem' => 'All',
+        'image' => asset('images/og-cover.jpg'),
+        'offers' => [
+            '@type' => 'Offer',
+            'price' => '0',
+            'priceCurrency' => 'USD',
+        ],
+    ];
+@endphp
+
 @section('schema')
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "SyncWithLove",
-  "url": "https://syncwithlove.com",
-  "description": "Romantic & spicy couple quizzes. Play in real-time or send your partner fun questions they can answer anytime. No login required.",
-  "applicationCategory": "Lifestyle",
-  "operatingSystem": "All",
-  "image": "https://syncwithlove.com/images/og-cover.jpg",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
+    <script type="application/ld+json">
+        {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
+    </script>
 @endsection
+
 
 @section('content')
     <div class="pb-20">
