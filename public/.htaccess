@@ -1,9 +1,15 @@
 <IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Canonical Redirects: Force HTTPS and remove www in a single step
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP_HOST} ^www\. [NC]
+    RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301,NE]
+
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
-
-    RewriteEngine On
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -23,3 +29,111 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# -------------------------------------------------------
+# Performance: Browser Caching (Cache TTL)
+# -------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Default: 1 month
+    ExpiresDefault "access plus 1 month"
+
+    # Images: cache for 1 year
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # Fonts: cache for 1 year
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+
+    # CSS & JS: cache for 1 year (safe because filenames are versioned)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+
+    # HTML: shortest practical because HTML updates often
+    # Use short caching but allow revalidation so visitors get updates quickly.
+    ExpiresByType text/html "access plus 5 minutes"
+</IfModule>
+
+# Optionally disable ETag if you use immutable caching and want to avoid validators:
+# FileETag None
+
+# -------------------------------------------------------
+# Compression: Brotli (preferred) + Deflate (fallback)
+# -------------------------------------------------------
+<IfModule mod_brotli.c>
+    # Brotli compress common text resources
+    AddOutputFilterByType BROTLI_COMPRESS text/plain text/html text/xml text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# -------------------------------------------------------
+# Security & Other Useful Response Headers
+# -------------------------------------------------------
+<IfModule mod_headers.c>
+    # Basic security headers
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    # X-XSS-Protection is deprecated; don't set it (modern browsers ignore or have their own XSS protections).
+    Header always unset X-XSS-Protection
+
+    # HSTS - tell browsers to always use HTTPS (adjust max-age as needed)
+    # Note: Only enable with HTTPS configured. preload directive can be added after testing.
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+    # Hide server fingerprint
+    Header always unset X-Powered-By
+
+    # Ensure caches serve compressed variants correctly
+    Header always append Vary Accept-Encoding
+
+    # Set Cache-Control for immutable static assets via FilesMatch
+</IfModule>
+
+# Cache-Control + immutable for static assets (css, js, images, fonts)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(?:css|js|png|jpg|jpeg|gif|svg|webp|avif|ico|woff2?|woff|ttf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header unset Pragma
+  </FilesMatch>
+
+  # HTML: prefer revalidation to get updates
+  <FilesMatch "\.(?:html|htm|php)$">
+    Header set Cache-Control "no-cache, must-revalidate, max-age=0"
+  </FilesMatch>
+</IfModule>
+
+# -------------------------------------------------------
+# Optional: Security-related headers you can add (test before enabling)
+# -------------------------------------------------------
+# Content-Security-Policy: VERY useful but site-specific — test carefully.
+# Example (starter): only allow self for scripts/styles, allow inline if needed; update for third-party domains.
+# Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com;"
+
+# -------------------------------------------------------
+# End of file
+# -------------------------------------------------------
