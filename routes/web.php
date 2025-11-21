@@ -18,3 +18,6 @@ Route::get('game.create', function () {
 Route::view('privacy', 'pages.essentials.privacy')->name('privacy');
 Route::view('terms', 'pages.essentials.terms')->name('terms');
 Route::view('contact', 'pages.essentials.contact')->name('contact');
+Route::view('about', 'pages.essentials.about')->name('about');
+Route::view('faq', 'pages.essentials.faq')->name('faq');
+Route::view('cookie', 'pages.essentials.cookies')->name('cookie');

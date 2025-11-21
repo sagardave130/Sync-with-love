@@ -5,6 +5,9 @@
         <a href="{{ route('privacy') }}" class="hover:text-rose-500 transition-colors">Privacy</a>
         <a href="{{ route('terms') }}" class="hover:text-rose-500 transition-colors">Terms</a>
         <a href="{{ route('contact') }}" class="hover:text-rose-500 transition-colors">Contact</a>
+        <a href="{{ route('about') }}" class="hover:text-rose-500 transition-colors">About Us</a>
+        <a href="{{ route('faq') }}" class="hover:text-rose-500 transition-colors">FAQ</a>
+        <a href="{{ route('cookie') }}" class="hover:text-rose-500 transition-colors">Cookie Policy</a>
     </div>
     <div class="mt-6 text-xs text-gray-400">
         © {{ date('Y') }} CoupleSync. All rights reserved.

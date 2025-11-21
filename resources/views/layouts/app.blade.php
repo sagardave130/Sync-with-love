@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CoupleSync') }} - @yield('title', 'Spark deeper intimacy & play')</title>
+    <title>{{ @yield('title') }}</title>
 
-    <meta name="description" content="@yield('meta_description', 'Play romantic, spicy, fun, and emotional couple quizzes. Sync in real-time or send playful questions to your partner anytime. No login required — deepen your connection effortlessly.')">
+    <meta name="description" content="@yield('meta_description')">
 
-    <meta name="keywords" content="@yield('meta_keywords', 'couple quiz, romantic questions, spicy game for couples, relationship quiz, long distance couple games, sync couple gameplay, love questions, AI couple quiz')">
+    <meta name="keywords" content="@yield('meta_keywords')">
 
     <link rel="canonical" href="{{ url()->current() }}">
 
