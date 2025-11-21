@@ -9,14 +9,30 @@
 
     <title>{{ config('app.name', 'CoupleSync') }} - @yield('title', 'Spark deeper intimacy & play')</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <meta name="description" content="@yield('meta_description', 'Play romantic, spicy, fun, and emotional couple quizzes. Sync in real-time or send playful questions to your partner anytime. No login required — deepen your connection effortlessly.')">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta name="keywords" content="@yield('meta_keywords', 'couple quiz, romantic questions, spicy game for couples, relationship quiz, long distance couple games, sync couple gameplay, love questions, AI couple quiz')">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="@yield('og_title', config('app.name') . ' - Spark deeper intimacy & play')" />
+    <meta property="og:description" content="@yield('og_description', 'Fun, romantic & spicy couple quizzes. Play together live or send your partner playful questions they can answer anytime.')" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="@yield('og_image', asset('images/og-cover.jpg'))" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('twitter_title', config('app.name') . ' - Spark deeper intimacy & play')">
+    <meta name="twitter:description" content="@yield('twitter_description', 'Romantic & spicy couple games. Sync instantly or send quizzes to your partner. No login needed.')">
+    <meta name="twitter:image" content="@yield('twitter_image', asset('images/og-cover.jpg'))">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+
+    <!-- JSON-LD Schema -->
+    @yield('schema')
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
