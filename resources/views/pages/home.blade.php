@@ -53,7 +53,7 @@
 
 
 @section('content')
-    <div class="pb-20">
+    <div class="">
         {{-- Hero Section --}}
         <div class="relative pt-8 pb-12 md:pt-32 md:pb-32 overflow-hidden">
             {{-- Background Gradients --}}
@@ -364,6 +364,118 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        {{-- Testimonials Section --}}
+        <div class="py-20 bg-white px-6">
+            <div class="max-w-5xl mx-auto text-center mb-14">
+                <h2 class="text-3xl font-bold serif text-gray-900 mb-2">Loved by Couples Everywhere</h2>
+                <p class="text-gray-500">Real experiences from couples using SyncWithLove</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-rose-50">
+                    <p class="text-gray-700 italic mb-4">"We played the Romantic mode and ended talking for 2 hours.
+                        Amazing experience."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 bg-rose-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">Aarav & Priya</p>
+                            <p class="text-xs text-gray-400">Long distance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-purple-50">
+                    <p class="text-gray-700 italic mb-4">"We tried the Spicy questions 😳🔥 and it made our night
+                        unforgettable."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 bg-purple-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">Jake & Mia</p>
+                            <p class="text-xs text-gray-400">USA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-indigo-50">
+                    <p class="text-gray-700 italic mb-4">"Send Quiz mode is brilliant. My partner answered during work
+                        break ❤️"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 bg-indigo-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-sm">Luna & Carlos</p>
+                            <p class="text-xs text-gray-400">Spain</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- FAQ Preview --}}
+        <div class="py-20 bg-slate-50 px-6">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold serif text-gray-900 mb-3">Frequently Asked Questions</h2>
+                <p class="text-gray-500">Quick answers to help you get started</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow border border-gray-100">
+                    <h3 class="font-bold text-gray-800 mb-2">Is SyncWithLove free?</h3>
+                    <p class="text-gray-500">Yes! All core modes — Sync Play, Send Quiz, categories — are 100% free.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow border border-gray-100">
+                    <h3 class="font-bold text-gray-800 mb-2">Do we need to create accounts?</h3>
+                    <p class="text-gray-500">No login required. Just share the link and start playing instantly.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow border border-gray-100">
+                    <h3 class="font-bold text-gray-800 mb-2">Can we play from different countries?</h3>
+                    <p class="text-gray-500">Yes! Sync mode works globally with real-time answer reveal.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="{{ route('faq') }}" class="text-rose-600 font-bold underline hover:text-rose-700">View full FAQ →</a>
+            </div>
+        </div>
+
+        {{-- SEO Content Block --}}
+        <div class="py-20 px-6 bg-white border-t border-gray-100">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold serif text-gray-900 mb-6">Your Relationship, Reimagined ❤️</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    SyncWithLove is designed for modern couples who want to connect deeper — whether you're living together
+                    or
+                    managing a long-distance relationship. Our curated categories like Romantic, Spicy, Fun & Playful, and
+                    Deep
+                    Emotional help you explore each other's personalities in new and meaningful ways.
+                </p>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Play in real-time with Sync Mode, or send playful quizzes with just a link. No login, no account, no
+                    pressure —
+                    just pure connection. Our platform is built to feel effortless, beautiful, and private.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Try a new vibe tonight and rediscover your partner with meaningful questions and fun interactions that
+                    spark
+                    conversations, laughter, and intimacy.
+                </p>
+            </div>
+        </div>
+
+        {{-- Closing CTA --}}
+        <div class="py-20 bg-gradient-to-r from-rose-600 to-pink-600 px-6">
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <h2 class="text-3xl md:text-4xl font-bold serif mb-4">Ready to spark deeper intimacy?</h2>
+                <p class="text-white/90 mb-8">Choose your vibe and start playing with your partner — it's instant and free.
+                </p>
+
+                <a href="#vibes"
+                    class="inline-block bg-white text-rose-600 font-bold px-10 py-5 rounded-2xl shadow-xl hover:scale-105 transition-all">
+                    Start Your First Game →
+                </a>
             </div>
         </div>
     </div>
